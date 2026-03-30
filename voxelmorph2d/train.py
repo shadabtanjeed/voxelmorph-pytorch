@@ -161,12 +161,12 @@ def main():
             entry["jaccard"] = jac
             epoch_bar.write(
                 f"Epoch {epoch:03d}/{cfg.num_epochs}  "
-                f"train={train_loss:.4f}  val={val_loss:.4f}  jaccard={jac:.4f}"
+                f"train loss={train_loss:.4f}  val loss={val_loss:.4f}  jaccard={jac:.4f}"
             )
         else:
             epoch_bar.write(
                 f"Epoch {epoch:03d}/{cfg.num_epochs}  "
-                f"train={train_loss:.4f}  val={val_loss:.4f}"
+                f"train loss={train_loss:.4f}  val loss={val_loss:.4f}"
             )
 
         log.append(entry)

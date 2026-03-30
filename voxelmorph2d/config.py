@@ -13,14 +13,14 @@ def get_config():
     )
 
     # Training
-    parser.add_argument("--num_epochs", type=int, default=20)
-    parser.add_argument("--batch_size", type=int, default=64)
+    parser.add_argument("--num_epochs", type=int, default=50)
+    parser.add_argument("--batch_size", type=int, default=256)
     parser.add_argument("--lr", type=float, default=1e-4)
     parser.add_argument(
         "--lambda_", type=float, default=0.01, help="Smoothness regularization weight"
     )
     parser.add_argument(
-        "--patience", type=int, default=5, help="Early stopping patience (epochs)"
+        "--patience", type=int, default=8, help="Early stopping patience (epochs)"
     )
     parser.add_argument(
         "--val_batches",
