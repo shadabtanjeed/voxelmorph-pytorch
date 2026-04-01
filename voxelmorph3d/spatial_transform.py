@@ -16,7 +16,7 @@ class SpatialTransformer(nn.Module):
               [B, C, D, H, W]  — warped image
     """
 
-    def __init__(self, mode="trilinear"):
+    def __init__(self, mode="bilinear"):
         super().__init__()
         self.mode = mode
 

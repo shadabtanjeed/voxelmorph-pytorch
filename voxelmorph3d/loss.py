@@ -40,7 +40,7 @@ def smoothness_loss(flow):
         flow: [B, 3, D, H, W]
     """
     dx = flow[:, :, :, :, 1:] - flow[:, :, :, :, :-1]  # differences along width
-    dy = flow[:, :, :, 1:, :] - flow[:, :, :-1, :, :]  # differences along height
+    dy = flow[:, :, :, 1:, :] - flow[:, :, :, :-1, :]  # differences along height
     dz = flow[:, :, 1:, :, :] - flow[:, :, :-1, :, :]  # differences along depth
 
     return (dx**2).mean() + (dy**2).mean() + (dz**2).mean()
