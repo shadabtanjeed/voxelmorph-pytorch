@@ -23,7 +23,7 @@ class OASISDataset(Dataset):
             subject_path = os.path.join(split_dir, subject_folder)
             if os.path.isdir(subject_path):
                 norm_file = os.path.join(subject_path, "aligned_norm.nii.gz")
-                seg_file  = os.path.join(subject_path, "seg35.nii.gz")
+                seg_file  = os.path.join(subject_path, "aligned_seg35.nii.gz")
                 if os.path.exists(norm_file) and os.path.exists(seg_file):
                     self.image_paths.append((norm_file, seg_file))
 
