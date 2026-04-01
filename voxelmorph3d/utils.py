@@ -1,9 +1,9 @@
-def dice_similarity(img_fixed, img_moved):
-
-    intersection = (img_fixed * img_moved).sum(dim=(2, 3, 4))
-    dice = (2.0 * intersection) / (
-        img_fixed.sum(dim=(2, 3, 4)) + img_moved.sum(dim=(2, 3, 4)) + 1e-6
-    )
-    dice = dice.mean(dim=1)
-
-    return dice.mean()
+def dice_similarity(fixed_seg, moved_seg, num_labels=35):
+    """Average per-label binary Dice over labels 1..num_labels."""
+    total = 0.0
+    for label in range(1, num_labels + 1):
+        f = (fixed_seg == label).float()
+        m = (moved_seg == label).float()
+        intersection = (f * m).sum()
+        total += (2.0 * intersection) / (f.sum() + m.sum() + 1e-6)
+    return total / num_labels
