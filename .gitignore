@@ -1,4 +1,7 @@
 voxelmorph2d/data
+voxelmorph3d/data
 voxelmorph2d/trained_models
+voxelmorph3d/trained_models
 .vscode
 voxelmorph2d/__pycache__/*
+voxelmorph3d/__pycache__/*
