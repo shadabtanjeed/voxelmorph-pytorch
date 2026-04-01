@@ -45,7 +45,8 @@ class SpatialTransformer(nn.Module):
         new_locs = grid + flow.permute(0, 2, 3, 4, 1)
 
         # the new locations are in pixel coordinates,
-        # but grid_sample expects normalized coordinates in the range [-1, 1]        new_locs[..., 0] = 2.0 * new_locs[..., 0] / (W - 1) - 1.0  # x
+        # but grid_sample expects normalized coordinates in the range [-1, 1]
+        new_locs[..., 0] = 2.0 * new_locs[..., 0] / (W - 1) - 1.0  # x
         new_locs[..., 1] = 2.0 * new_locs[..., 1] / (H - 1) - 1.0  # y
         new_locs[..., 2] = 2.0 * new_locs[..., 2] / (D - 1) - 1.0  # z
 

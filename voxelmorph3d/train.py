@@ -59,14 +59,16 @@ def eval_dice(dataset, model, stn, device):
 
     with torch.no_grad():
         for idx in tqdm(range(len(dataset)), desc="Dice eval", leave=False):
-            fixed, moving, _, _ = dataset[idx]
-            fixed  = fixed.unsqueeze(0).to(device)
-            moving = moving.unsqueeze(0).to(device)
+            fixed, moving, fixed_seg, moving_seg = dataset[idx]
+            fixed      = fixed.unsqueeze(0).to(device)
+            moving     = moving.unsqueeze(0).to(device)
+            moving_seg = moving_seg.unsqueeze(0).to(device)
+            fixed_seg  = fixed_seg.unsqueeze(0).to(device)
 
-            flow  = model(torch.cat([fixed, moving], dim=1))
-            moved = stn(moving, flow)
+            flow       = model(torch.cat([fixed, moving], dim=1))
+            moved_seg  = stn(moving_seg.float(), flow).round()
 
-            total_dice += dice_similarity(fixed, moved).item()
+            total_dice += dice_similarity(fixed_seg, moved_seg).item()
 
     return total_dice / len(dataset)
 
